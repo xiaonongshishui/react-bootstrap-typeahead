@@ -51,9 +51,15 @@ const TypeaheadMenu = React.createClass({
       'paginate',
       'paginationText',
     ]);
-
     return (
       <Menu {...menuProps}>
+        {this.props.hasTitle?<li className="menuTitle">
+          {this.props.hasTitle}
+        </li> :''}
+        {this.props.options.length==0?<li className="menuHint">
+          {this.props.hint}
+        </li>:''}
+
         {this.props.options.map(this._renderMenuItem)}
       </Menu>
     );

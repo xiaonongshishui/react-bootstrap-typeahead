@@ -135,7 +135,7 @@ const Typeahead = React.createClass({
       minLength: 0,
       multiple: false,
       paginate: true,
-      selected: [],
+      selected: []
     };
   },
 
@@ -209,14 +209,19 @@ const Typeahead = React.createClass({
   },
 
   _getFilteredResults() {
-    const {caseSensitive, labelKey, minLength, multiple, options} = this.props;
+    const {caseSensitive, labelKey, minLength, multiple, options,closeFilter} = this.props;
     const {selected, text} = this.state;
+
 
     if (text.length < minLength) {
       return [];
     }
 
     let {filterBy} = this.props;
+
+    if(closeFilter){
+      return options;
+    }
     if (Array.isArray(filterBy)) {
       const fields = filterBy;
       filterBy = option => defaultFilterBy(
@@ -302,6 +307,8 @@ const Typeahead = React.createClass({
       newSelectionPrefix,
       paginationText,
       renderMenuItemChildren,
+      hasTitle,
+      hint
     } = this.props;
 
     const {activeIndex, showMenu, text} = this.state;
@@ -317,6 +324,8 @@ const Typeahead = React.createClass({
       newSelectionPrefix,
       paginationText,
       renderMenuItemChildren,
+      hasTitle,
+      hint
     };
 
     return (
